@@ -20,7 +20,8 @@
   <script src="p5.play.js"></script>
   <script>
 
-
+    var logo;
+    var pos = 0;
     function preload(){
         logo = loadImage("LogoWebsite.png");
     }
@@ -42,24 +43,35 @@
     
         //Background
         background(0);
-    
-        // Header
+
+        //Mission Statement
         textFont("Times New Roman");
+        fill(255);
+        textSize(windowWidth/45);
+        text("Our Mission:", windowWidth/50, (windowHeight/2)-pos);
+        textSize(windowWidth/60);
+        text("\n\nOur mission is to provide the world with unique games and utilities accesible from your browser.", windowWidth/50, (windowHeight/2)-pos)
+
+        //Header
+        fill(0)
+        rectMode(CENTER);
+        rect(windowWidth/2, (windowHeight*0.0025)+(windowWidth/30)*1.5, windowWidth, windowWidth/6);
         fill(255);
         textSize(windowWidth/30);
         text("Awesome Programmer Studios", windowWidth/10, (windowHeight*0.0025)+(windowWidth/30)*1.5)
         image(logo, windowWidth*0, windowHeight*0, windowWidth/10, windowWidth/10);
         
+        
     
         //Links
         fill(255);
         textSize(windowWidth/60);
-        text("Games", windowWidth/1.8, (windowHeight*0.001)+(windowWidth/30)*1.5);
+        text("Games", windowWidth/1.8, (windowHeight*0.001)+(windowWidth/30)*1.5);     
         if (mouseX >= windowWidth/1.8 && mouseX <= (windowWidth/1.8)+(windowWidth/30)*1.5){
             if (mouseY <= (windowHeight*0.001)+(windowWidth/30)*1.5 && mouseY >= (windowHeight*0.001)+(windowWidth/30)*1){
                 document.body.style.cursor = "pointer";
                 if (mouseIsPressed){
-                    window.location.href = "https://www.awesomeprogrammerstudios.net/games.html";
+                    window.location.href= "https://www.awesomeprogrammerstudios.net/games.html";
                 }
             } else {
                 document.body.style.cursor = "default";
@@ -68,8 +80,23 @@
         } else {
             document.body.style.cursor = "default";
         }
-    
-  }
+
+        
+
+        
+}  
+
+//Scrolling
+function mouseWheel(event) {
+            print(event.delta);
+            pos += event.delta;
+            if (pos<0){
+                pos=0;
+            }
+            return false;
+}
+
+
 </script>
 </head>
 
